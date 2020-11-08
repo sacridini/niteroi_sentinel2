@@ -28,14 +28,24 @@ print(composite)
 
 // Classificação (random forest)
 var bands = ['B2', 'B3', 'B4', 'B8', 'NDVI']
-var samplesfc = urbano.merge(floresta).merge(graminea);
+var samplesfc = urbano.merge(floresta).merge(graminea).merge(agua);
 var imgClass = geet.rf(composite, bands, samplesfc, 'classe', 300, 10, 0.7);
 Map.addLayer(composite, imageVisParam, 's2');
 Map.addLayer(imgClass)
 
 
 Export.image.toDrive({
+  description: 'classification',
   image: imgClass,
+  scale: 10,
+  folder: 'ee',
+  region: nit,
+  maxPixels: 1e13
+});
+
+Export.image.toDrive({
+  description: 'composite',
+  image: composite.float(),
   scale: 10,
   folder: 'ee',
   region: nit,
