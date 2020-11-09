@@ -27,11 +27,11 @@ var composite = col_masked.median().clip(nit);
 print(composite)
 
 // Classificação (random forest)
-var bands = ['B2', 'B3', 'B4', 'B8', 'NDVI']
+var bands = ['B2', 'B3', 'B4', 'B8', 'NDVI', 'NDWI']
 var samplesfc = urbano.merge(floresta).merge(graminea).merge(agua);
 var imgClass = geet.rf(composite, bands, samplesfc, 'classe', 300, 10, 0.7);
 Map.addLayer(composite, imageVisParam, 's2');
-Map.addLayer(imgClass)
+Map.addLayer(imgClass, {}, 'class')
 
 
 Export.image.toDrive({
