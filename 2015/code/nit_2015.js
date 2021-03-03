@@ -1,8 +1,9 @@
 var geet = require('users/elacerda/geet:geet'); 
 
 var s2_col = ee.ImageCollection(s2)
-             .filter(ee.Filter.calendarRange(2015,2016,'year'))
-             .filter(ee.Filter.calendarRange(1,12,'month'))
+//             .filter(ee.Filter.calendarRange(2015,2016,'year'))
+//             .filter(ee.Filter.calendarRange(1,12,'month'))
+             .filterDate('2015-01-01', '2015-12-31')
              .filterBounds(roi)
              .select('B2', 'B3', 'B4', 'B8', 'QA60')
              
